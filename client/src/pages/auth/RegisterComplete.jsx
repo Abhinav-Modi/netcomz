@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { auth } from "../../Firebase";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const RegisterComplete = (props) => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const navigate = useNavigate();
 	useEffect(() => {
 		setEmail(window.localStorage.getItem("emailForRegistration"));
 	}, []);
@@ -37,7 +39,7 @@ const RegisterComplete = (props) => {
 				// redux store
 				console.log("user", user, "idTokenResult", idTokenResult);
 				// redirect
-				props.history.push("/");
+				navigate("/");
 			}
 		} catch (error) {
 			console.log("ERROR", error);

@@ -9,6 +9,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { auth } from "./Firebase";
 import { useDispatch } from "react-redux";
+import ForgotPassword from "./pages/auth/ForgotPassword";
 
 const App = () => {
 	const dispatch = useDispatch();
@@ -28,7 +29,7 @@ const App = () => {
 		});
 		// cleanup
 		return () => unsubscribe();
-	}, []);
+	});
 
 	return (
 		<Router>
@@ -39,6 +40,7 @@ const App = () => {
 				<Route path="/login" element={<Login />} />
 				<Route path="/register" element={<Register />} />
 				<Route path="/register/complete" element={<RegisterComplete />} />
+				<Route path="/forgot/password" element={<ForgotPassword />} />
 			</Routes>
 		</Router>
 	);
