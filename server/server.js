@@ -3,8 +3,10 @@ const app = express();
 const mongoose = require("mongoose");
 const morgan = require("morgan");
 const cors = require("cors");
-
 require("dotenv").config();
+const fs = require("fs");
+// import routes
+const authRoutes = require("./routes/auth");
 port = process.env.PORT || 8000;
 url = process.env.DATABASE_URL;
 
@@ -23,9 +25,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
 
-app.get("/", (req, res) => {
-	res.send("Hello World!");
-	// fetch data from database
-});
+// Route Middleware
+// app.use("/api", authRoutes);
+fs.readdirSync("./routes").map((r) =>
+	app.use("/api", require("./routes/" + r))
+);
 
 app.listen(port, console.log(`Server is running on port ${port}...`));
