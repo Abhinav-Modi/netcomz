@@ -6,6 +6,14 @@ import Register from "./pages/auth/Register";
 import Header from "./components/nav/Header.jsx";
 import RegisterComplete from "./pages/auth/RegisterComplete";
 import History from "./pages/user/History";
+import Wishlist from "./pages/user/Wishlist";
+import Password from "./pages/user/Password";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import CategoryCreate from "./pages/admin/category/CategoryCreate";
+import CategoryUpdate from "./pages/admin/category/CategoryUpdate";
+import SubCreate from "./pages/admin/sub/SubCreate";
+import SubUpdate from "./pages/admin/sub/SubUpdate";
+import AdminRoute from "./components/routes/AdminRoute";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { auth } from "./Firebase";
@@ -55,6 +63,28 @@ const App = () => {
 				<Route path="/forgot/password" element={<ForgotPassword />} />
 				{user && user.token ? (
 					<Route path="/user/history" element={<History />} />
+				) : null}
+				{user && user.token ? (
+					<Route path="/user/password" element={<Password />} />
+				) : null}
+				{user && user.token ? (
+					<Route path="/user/wishlist" element={<Wishlist />} />
+				) : null}
+				{/* <AdminRoute path="/admin/dashboard" element={<AdminDashboard />} /> */}
+				{user && user.token && user.role === "admin" ? (
+					<Route path="/admin/dashboard" element={<AdminDashboard />} />
+				) : null}
+				{user && user.token && user.role === "admin" ? (
+					<Route path="/admin/category" element={<CategoryCreate />} />
+				) : null}
+				{user && user.token && user.role === "admin" ? (
+					<Route path="/admin/category/:slug" element={<CategoryUpdate />} />
+				) : null}
+				{user && user.token && user.role === "admin" ? (
+					<Route path="/admin/sub" element={<SubCreate />} />
+				) : null}
+				{user && user.token && user.role === "admin" ? (
+					<Route path="/admin/sub/:slug" element={<SubUpdate />} />
 				) : null}
 			</Routes>
 		</Router>

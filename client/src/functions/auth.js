@@ -22,3 +22,15 @@ export const currentUser = async (authtoken) => {
 		}
 	);
 };
+
+export const currentAdmin = async (authtoken) => {
+	return await axios.post(
+		`${process.env.REACT_APP_API}/current-admin`,
+		{}, // empty object as we are sending token in headers and not in body
+		{
+			headers: {
+				authtoken,
+			},
+		}
+	);
+};
