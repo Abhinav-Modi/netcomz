@@ -13,6 +13,9 @@ import CategoryCreate from "./pages/admin/category/CategoryCreate";
 import CategoryUpdate from "./pages/admin/category/CategoryUpdate";
 import SubCreate from "./pages/admin/sub/SubCreate";
 import SubUpdate from "./pages/admin/sub/SubUpdate";
+import ProductCreate from "./pages/admin/product/ProductCreate";
+import AllProducts from "./pages/admin/product/AllProducts";
+import ProductUpdate from "./pages/admin/product/ProductUpdate";
 import AdminRoute from "./components/routes/AdminRoute";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -85,6 +88,15 @@ const App = () => {
 				) : null}
 				{user && user.token && user.role === "admin" ? (
 					<Route path="/admin/sub/:slug" element={<SubUpdate />} />
+				) : null}
+				{user && user.token && user.role === "admin" ? (
+					<Route path="/admin/product" element={<ProductCreate />} />
+				) : null}
+				{user && user.token && user.role === "admin" ? (
+					<Route path="/admin/products" element={<AllProducts />} />
+				) : null}
+				{user && user.token && user.role === "admin" ? (
+					<Route path="/admin/product/:slug" element={<ProductUpdate />} />
 				) : null}
 			</Routes>
 		</Router>
