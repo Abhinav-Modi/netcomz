@@ -33,6 +33,7 @@ const Header = () => {
 			onClick={(e) => setCurrent(e.key)}
 			selectedKeys={[current]}
 			mode="horizontal"
+			className="bg-warning text-dark   font-monospace bg-opacity-25"
 		>
 			<Item key="home" icon={<AppstoreOutlined />}>
 				<Link to="/">Home</Link>

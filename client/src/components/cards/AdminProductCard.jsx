@@ -13,6 +13,7 @@ const AdminProductCard = ({ product, handleRemove }) => {
 
 	return (
 		<Card
+			hoverable
 			cover={
 				<img
 					src={images && images.length ? images[0].url : Laptop}

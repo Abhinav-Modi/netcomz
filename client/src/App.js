@@ -16,6 +16,7 @@ import SubUpdate from "./pages/admin/sub/SubUpdate";
 import ProductCreate from "./pages/admin/product/ProductCreate";
 import AllProducts from "./pages/admin/product/AllProducts";
 import ProductUpdate from "./pages/admin/product/ProductUpdate";
+import Product from "./pages/Product";
 import AdminRoute from "./components/routes/AdminRoute";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -98,6 +99,7 @@ const App = () => {
 				{user && user.token && user.role === "admin" ? (
 					<Route path="/admin/product/:slug" element={<ProductUpdate />} />
 				) : null}
+				<Route path="/product/:slug" element={<Product />} />
 			</Routes>
 		</Router>
 	);
