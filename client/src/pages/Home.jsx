@@ -2,6 +2,7 @@ import React from "react";
 
 import NewArrival from "../components/home/NewArrival";
 import BestSellers from "../components/home/BestSellers";
+import CategoryList from "../components/category/CategoryList";
 const Home = () => {
 	return (
 		<>
@@ -17,6 +18,10 @@ const Home = () => {
 				<h1 className="display-4">Our Best Sellers</h1>
 			</div>
 			<BestSellers />
+			<div className="text-center p-3 mb-5 mt-5 font-monospace">
+				<h1 className="display-4">Categories</h1>
+			</div>
+			<CategoryList />
 		</>
 	);
 };

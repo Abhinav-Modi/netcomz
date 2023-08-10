@@ -67,7 +67,6 @@ exports.update = async (req, res) => {
 };
 
 exports.list = async (req, res) => {
-	console.table(req.body);
 	try {
 		const { sort, order, page } = req.body;
 		const currentPage = page || 1;
@@ -93,7 +92,6 @@ exports.productsCount = async (req, res) => {
 };
 
 exports.productStar = async (req, res) => {
-	console.log("req uset body", req.body);
 	const product = await Product.findById(req.params.productId).exec();
 	const user = await User.findOne({ email: req.user.email }).exec();
 	const { star } = req.body;
@@ -109,7 +107,7 @@ exports.productStar = async (req, res) => {
 			},
 			{ new: true }
 		).exec();
-		console.log("ratingAdded", ratingAdded);
+
 		res.json(ratingAdded);
 	} else {
 		const ratingUpdated = await Product.updateOne(

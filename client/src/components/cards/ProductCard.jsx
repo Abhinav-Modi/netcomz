@@ -22,7 +22,7 @@ const ProductCard = ({ product }) => {
 					<img
 						alt="example"
 						src={images && images.length ? images[0].url : ""}
-						style={{ height: "150px", objectFit: "cover" }}
+						style={{ height: "150px", objectFit: "contain" }}
 					/>
 				}
 				actions={[
