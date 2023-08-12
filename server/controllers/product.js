@@ -134,6 +134,7 @@ exports.listRelated = async (req, res) => {
 		.exec();
 	res.json(related);
 };
+
 const handleQuery = async (req, res, query) => {
 	const products = await Product.find({ $text: { $search: query } })
 		.populate("category", "_id name")
@@ -161,6 +162,49 @@ const handlePrice = async (req, res, price) => {
 	}
 };
 
+const handleCategory = async (req, res, category) => {
+	try {
+		let products = await Product.find({ category })
+			.populate("category", "_id name")
+			.populate("subs", "_id name")
+			.exec();
+		res.json(products);
+	} catch (err) {
+		console.log(err);
+	}
+};
+
+const handleStar = async (req, res, stars) => {
+	try {
+		const aggregates = await Product.aggregate([
+			{
+				$project: {
+					document: "$$ROOT",
+					floorAverage: {
+						$floor: { $avg: "$ratings.star" },
+					},
+				},
+			},
+			{ $match: { floorAverage: stars } },
+		])
+			.limit(12)
+			.exec(); // Remove the callback function
+
+		const productIds = aggregates.map((aggregate) => aggregate.document._id);
+		const products = await Product.find({ _id: { $in: productIds } })
+			.populate("category", "_id name")
+			.populate("subs", "_id name")
+			.exec();
+
+		res.json(products);
+	} catch (err) {
+		console.log("Aggregation error:", err);
+		return res.status(400).json({
+			error: "Unable to fetch products by stars",
+		});
+	}
+};
+
 exports.listsearchFilters = async (req, res) => {
 	const { query, price, category, stars, sub } = req.body;
 
@@ -174,13 +218,13 @@ exports.listsearchFilters = async (req, res) => {
 		await handlePrice(req, res, price);
 	}
 
-	// if (category) {
-	// 	console.log("category ---> ", category);
-	// 	await handleCategory(req, res, category);
-	// }
+	if (category) {
+		console.log("category ---> ", category);
+		await handleCategory(req, res, category);
+	}
 
-	// if (stars) {
-	// 	console.log("stars ---> ", stars);
-	// 	await handleStar(req, res, stars);
-	// }
+	if (stars) {
+		console.log("stars ---> ", stars);
+		await handleStar(req, res, stars);
+	}
 };
