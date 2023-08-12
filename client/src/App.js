@@ -20,6 +20,8 @@ import Product from "./pages/Product";
 import CategoryHome from "./pages/category/CategoryHome";
 import SubHome from "./pages/sub/SubHome";
 import Shop from "./pages/Shop";
+import Cart from "./pages/Cart";
+import SideDrawer from "./components/drawer/SideDrawer";
 import AdminRoute from "./components/routes/AdminRoute";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -62,6 +64,7 @@ const App = () => {
 		<Router>
 			<Header />
 			<ToastContainer />
+			<SideDrawer />
 			<Routes>
 				<Route path="/" element={<Home />} />
 				<Route path="/login" element={<Login />} />
@@ -106,6 +109,7 @@ const App = () => {
 				<Route path="/category/:slug" element={<CategoryHome />} />
 				<Route path="/sub/:slug" element={<SubHome />} />
 				<Route path="/shop" element={<Shop />} />
+				<Route path="/cart" element={<Cart />} />
 			</Routes>
 		</Router>
 	);

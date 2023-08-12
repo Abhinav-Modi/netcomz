@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
-import { Menu } from "antd";
+import { Menu, Badge } from "antd";
+
 import {
 	AppstoreOutlined,
 	SettingOutlined,
@@ -8,6 +9,7 @@ import {
 	UserOutlined,
 	LogoutOutlined,
 	ShoppingOutlined,
+	ShoppingCartOutlined,
 } from "@ant-design/icons";
 import { Link, useNavigate } from "react-router-dom";
 import firebase from "firebase/compat/app";
@@ -20,7 +22,7 @@ const Header = () => {
 	const navigate = useNavigate();
 	let dispatch = useDispatch();
 
-	let { user } = useSelector((state) => ({ ...state }));
+	let { user, cart } = useSelector((state) => ({ ...state }));
 	const logout = () => {
 		firebase.auth().signOut();
 		dispatch({
@@ -43,6 +45,14 @@ const Header = () => {
 				</Item>
 				<Item key="shop" icon={<ShoppingOutlined />}>
 					<Link to="/shop">Shop</Link>
+				</Item>
+
+				<Item key="cart" icon={<ShoppingCartOutlined />}>
+					<Link to="/cart">
+						<Badge count={cart.length} offset={[9, 0]}>
+							Cart
+						</Badge>
+					</Link>
 				</Item>
 			</div>
 			<div className="d-flex align-items-center ">
