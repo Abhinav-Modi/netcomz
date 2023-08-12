@@ -19,6 +19,7 @@ import ProductUpdate from "./pages/admin/product/ProductUpdate";
 import Product from "./pages/Product";
 import CategoryHome from "./pages/category/CategoryHome";
 import SubHome from "./pages/sub/SubHome";
+import Shop from "./pages/Shop";
 import AdminRoute from "./components/routes/AdminRoute";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -104,6 +105,7 @@ const App = () => {
 				<Route path="/product/:slug" element={<Product />} />
 				<Route path="/category/:slug" element={<CategoryHome />} />
 				<Route path="/sub/:slug" element={<SubHome />} />
+				<Route path="/shop" element={<Shop />} />
 			</Routes>
 		</Router>
 	);
