@@ -7,7 +7,7 @@ import { showAverage } from "../../functions/rating";
 const { Meta } = Card;
 
 const ProductCard = ({ product }) => {
-	const { images, title, description, slug } = product;
+	const { images, title, description, slug, price } = product;
 
 	return (
 		<>
@@ -36,7 +36,7 @@ const ProductCard = ({ product }) => {
 				className="p-1"
 			>
 				<Meta
-					title={title}
+					title={`${title} - $${price}`}
 					description={`	${description && description.substring(0, 50)}...`}
 				/>
 			</Card>

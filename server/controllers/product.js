@@ -169,10 +169,10 @@ exports.listsearchFilters = async (req, res) => {
 		await handleQuery(req, res, query);
 	}
 
-	// if (price !== undefined) {
-	// 	console.log("price ---> ", price);
-	// 	await handlePrice(req, res, price);
-	// }
+	if (price !== undefined) {
+		console.log("price ---> ", price);
+		await handlePrice(req, res, price);
+	}
 
 	// if (category) {
 	// 	console.log("category ---> ", category);
