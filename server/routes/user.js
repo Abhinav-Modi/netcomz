@@ -11,6 +11,7 @@ const {
 	emptyCart,
 	saveAddress,
 	createOrder,
+	orders,
 } = require("../controllers/user");
 
 router.post("/user/cart", authCheck, userCart);
@@ -18,6 +19,7 @@ router.get("/user/cart", authCheck, getUserCart);
 router.delete("/user/cart", authCheck, emptyCart);
 router.post("/user/address", authCheck, saveAddress);
 router.post("/user/order", authCheck, createOrder);
+router.get("/user/orders", authCheck, orders);
 
 // router.get("/user", (req, res) => {
 //   res.json({
