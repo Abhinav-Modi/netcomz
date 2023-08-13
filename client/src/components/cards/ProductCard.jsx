@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Card, Tooltip } from "antd";
 import { EyeOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
@@ -42,7 +42,11 @@ const ProductCard = ({ product }) => {
 			});
 		}
 	};
-
+	useEffect(() => {
+		if (product.quantity < 1) {
+			setTooltip("Out of Stock");
+		}
+	}, [product.quantity]);
 	return (
 		<>
 			{product && product.ratings && product.ratings.length > 0 ? (
@@ -60,14 +64,29 @@ const ProductCard = ({ product }) => {
 					/>
 				}
 				actions={[
-					<Link to={`/product/${slug}`}>
+					<Link to={`/product/${slug}`} style={{ textDecoration: "none" }}>
 						<EyeOutlined className="text-warning" /> <br /> View Product
 					</Link>,
 					<Tooltip title={tooltip}>
-						<Link onClick={handleAddtoCart}>
-							<ShoppingCartOutlined className="text-danger" /> <br /> Add to
-							Cart
-						</Link>
+						{product.quantity < 1 ? (
+							<>
+								<ShoppingCartOutlined
+									onClick={handleAddtoCart}
+									className="text-danger"
+								/>
+								<br />
+								<p className="text-danger">Out of Stock</p>
+							</>
+						) : (
+							<>
+								<ShoppingCartOutlined
+									onClick={handleAddtoCart}
+									className="text-danger"
+								/>
+								<br />
+								Add to Cart
+							</>
+						)}
 					</Tooltip>,
 				]}
 				className="p-1"
