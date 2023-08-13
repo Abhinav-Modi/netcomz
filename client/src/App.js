@@ -21,6 +21,8 @@ import CategoryHome from "./pages/category/CategoryHome";
 import SubHome from "./pages/sub/SubHome";
 import Shop from "./pages/Shop";
 import Cart from "./pages/Cart";
+import Checkout from "./pages/Checkout";
+import Payment from "./pages/Payment";
 import SideDrawer from "./components/drawer/SideDrawer";
 import AdminRoute from "./components/routes/AdminRoute";
 import { ToastContainer } from "react-toastify";
@@ -110,6 +112,12 @@ const App = () => {
 				<Route path="/sub/:slug" element={<SubHome />} />
 				<Route path="/shop" element={<Shop />} />
 				<Route path="/cart" element={<Cart />} />
+				{user && user.token ? (
+					<Route path="/checkout" element={<Checkout />} />
+				) : null}
+				{user && user.token ? (
+					<Route path="/payment" element={<Payment />} />
+				) : null}
 			</Routes>
 		</Router>
 	);
