@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import _ from "lodash";
 import { showAverage } from "../../functions/rating";
 import { useDispatch, useSelector } from "react-redux";
+import Laptop from "../../images/laptop.png";
 const { Meta } = Card;
 
 const ProductCard = ({ product }) => {
@@ -59,7 +60,7 @@ const ProductCard = ({ product }) => {
 				cover={
 					<img
 						alt="example"
-						src={images && images.length ? images[0].url : ""}
+						src={images && images.length ? images[0].url : Laptop}
 						style={{ height: "150px", objectFit: "contain" }}
 					/>
 				}

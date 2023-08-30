@@ -4,7 +4,7 @@ const ShowPaymentInfo = ({ order }) => (
 	<div>
 		<p>
 			<span>Order Id: {order.paymentIntent.id}</span>
-			{" / "}
+			{/* {" / "}
 			<span>
 				Amount:{" / "}
 				{(order.paymentIntent.amount /= 100).toLocaleString("en-US", {
@@ -26,7 +26,7 @@ const ShowPaymentInfo = ({ order }) => (
 			{" / "}
 			<span className="badge bg-primary text-white">
 				STATUS: {order.orderStatus}
-			</span>
+			</span> */}
 		</p>
 	</div>
 );
